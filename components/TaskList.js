@@ -1,36 +1,22 @@
 import * as React from 'react';
-import Checkbox from '@mui/material';
-import DeleteIcon from '@mui/material';
-import IconButton from '@mui/material';
+import { Checkbox, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function TaskList({ tasks, onDeleteTask }) {
+export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
 	return (
 		<ul>
-			{tasks.map((task) => {
+			{tasks.map((task) =>
 				<li key={task.id}>
-					<Task task={task} onDelete={onDeleteTask} />
+					<Task task={task} onChange={onChangeTask} onDelete={onDeleteTask} />
 				</li>
-			})}
+			)}
 		</ul>
 	)
 }
 
-function Task({ task, onDelete }) {
+function Task({ task, onDelete, onChange }) {
 	return <>
 		<Checkbox
-			checked={task.done}
-		/>
-		{task.text}
-		<IconButton
-			aria-label="delete"
-			onClick={() => onDelete(task.id)}
-		>
-			<DeleteIcon />
-		</IconButton>
-
-
-
-		{/* <input
 			type="checkbox"
 			checked={task.done}
 			onChange={(e) => {
@@ -41,6 +27,11 @@ function Task({ task, onDelete }) {
 			}}
 		/>
 		{task.text}
-		<button onClick={() => onDelete(task.id)}>Delete</button> */}
+		<IconButton
+			aria-label="delete"
+			onClick={() => onDelete(task.id)}
+		>
+			<DeleteIcon />
+		</IconButton>
 	</>
 }

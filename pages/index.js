@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import tasksReducer from '../components/tasksReducer';
-import TaskList from '../components/taskList';
+import TaskList from '../components/TaskList';
 import AddTask from '../components/AddTask';
 
 export default function TaskApp() {
@@ -13,6 +13,13 @@ export default function TaskApp() {
 			id: nextID++,
 			text: text,
 		});
+	}
+
+	function handleChangeTask(task) {
+		dispatch({
+			type: 'changed',
+			task: task,
+		})
 	}
 
 	function handleDeleteTask(taskID) {
@@ -28,6 +35,7 @@ export default function TaskApp() {
 			<AddTask onAddTask={handleAddTask} />
 			<TaskList
 				tasks={tasks}
+				onChangeTask={handleChangeTask}
 				onDeleteTask={handleDeleteTask}
 			/>
 		</Box>
@@ -38,5 +46,5 @@ let nextID = 3;
 const initialTasks = [
 	{ id: 0, text: 'Visit Venice', done: true },
 	{ id: 1, text: 'Visit Athens', done: true },
-	{ id: 3, text: 'Visit Rome', done: false },
+	{ id: 2, text: 'Visit Rome', done: false },
 ]
