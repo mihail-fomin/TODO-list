@@ -3,9 +3,11 @@ import { Box } from '@mui/material';
 import tasksReducer from '../components/tasksReducer';
 import TaskList from '../components/TaskList';
 import AddTask from '../components/AddTask';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function TaskApp() {
 	const [tasks, dispatch] = React.useReducer(tasksReducer, initialTasks);
+
 
 	function handleAddTask(text) {
 		dispatch({
@@ -30,6 +32,7 @@ export default function TaskApp() {
 	}
 
 	return <>
+		<CssBaseline />
 		<Box sx={{ m: 4 }}>
 			<h1>Countries to visit</h1>
 			<AddTask onAddTask={handleAddTask} />
